@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
-<head th:replace="partials/header :: head" />
+<head th:replace="partials/header :: head"/>
 <body>
-<div th:replace="partials/navbar :: navbar" />
+<div th:replace="partials/navbar :: navbar"/>
 
-<h1>Post list</h1>
-
-<div th:each="post : ${posts}">
-    <h3 th:text="${post.title}"></h3>
-    <p th:text="${post.body}"></p>
-    <a href="/posts/1">View post</a>
+<h1 class="text-center my-3">All Posts</h1>
+<div class="container-fluid row">
+    <div th:each="post : ${posts}" class="col-sm-4 d-flex justify-content-evenly">
+        <div class="card">
+            <div class="card-body">
+                <h5 th:text="${post.title}" class="card-title text-center"></h5>
+                <p th:text="${post.body}" class="card-text"></p>
+                <a href="/posts/1">View Post</a>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div th:replace="partials/footer :: footer" />
+<div th:replace="partials/footer :: footer"/>
 </body>
 </html>
