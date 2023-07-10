@@ -45,21 +45,33 @@ public class PostController {
     }
 
     @GetMapping("/create")
-    public String createNewPost() {
+    public String createNewPost(Model model) {
+        model.addAttribute("post", new Post());
         return "/posts/create";
     }
 
     @PostMapping("/create")
-    public String submitNewPost(@RequestParam String newPostTitle, @RequestParam String newPostBody) {
-        Post post = new Post();
-        post.setTitle(newPostTitle);
-        post.setBody(newPostBody);
-
-        User loggedInUser = userDao.findById(2L).get();
-        post.setCreator(loggedInUser);
+    public String submitNewPost(@ModelAttribute Post post) {
 
         emailService.prepareAndSend(post,"New Post created", "Your New Post has been created");
 
+        postDao.save(post);
+
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/${id}/edit")
+    public String editPost(@PathVariable Long id, Model model) {
+        Post post = postDao.findById(id).get();
+        model.addAttribute("post", post);
+        return "/posts/edit";
+    }
+
+    @PostMapping("/${id}/edit")
+    public String submitEditPost(@PathVariable Long id, @ModelAttribute Post post) {
+
+        emailService.prepareAndSend(post,"Edited Post", "Your post has been edited");
+        post.setId(id);
         postDao.save(post);
 
         return "redirect:/posts";

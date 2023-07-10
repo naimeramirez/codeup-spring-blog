@@ -7,14 +7,18 @@
 
 <div class="container-fluid">
     <h1>Create New Post</h1>
-    <form method="post" action="/posts/create">
+    <form method="post" action="/posts/create" th:object="${post}">
         <div class="mb-3">
             <label for="newPostTitle" class="form-label">Title</label>
-            <input type="text" class="form-control" name="newPostTitle" id="newPostTitle">
+            <input type="text" class="form-control" name="newPostTitle" id="newPostTitle" th:field="*{title}">
         </div>
         <div class="mb-3">
             <label for="newPostBody" class="form-label">Body</label>
-            <textarea class="form-control" name="newPostBody" id="newPostBody" rows="5"></textarea>
+            <textarea class="form-control" name="newPostBody" id="newPostBody" th:field="*{body}" rows="5"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="newPostCreatorId" class="form-label">Body</label>
+            <textarea class="form-control" name="newPostCreatorId" id="newPostCreatorId" th:field="*{creator}" rows="1"></textarea>
         </div>
         <div>
             <button type="submit" class="btn btn-primary">Submit</button>
