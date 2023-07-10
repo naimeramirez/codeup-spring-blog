@@ -7,14 +7,14 @@
 
 <div class="container-fluid">
     <h1>Create New Post</h1>
-    <form>
+    <form method="post" action="/posts/create">
         <div class="mb-3">
             <label for="newPostTitle" class="form-label">Title</label>
-            <input type="text" class="form-control" id="newPostTitle">
+            <input type="text" class="form-control" name="newPostTitle" id="newPostTitle">
         </div>
         <div class="mb-3">
             <label for="newPostBody" class="form-label">Body</label>
-            <textarea class="form-control" id="newPostBody" rows="5"></textarea>
+            <textarea class="form-control" name="newPostBody" id="newPostBody" rows="5"></textarea>
         </div>
         <div>
             <button type="submit" class="btn btn-primary">Submit</button>
