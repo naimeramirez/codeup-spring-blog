@@ -23,7 +23,7 @@ import java.util.Optional;
 public class PostController {
     private PostRepository postDao;
     private UserRepository userDao;
-    private final EmailService emailService;
+    private EmailService emailService;
 
 
     @GetMapping("")
@@ -57,6 +57,8 @@ public class PostController {
 
         User loggedInUser = userDao.findById(2L).get();
         post.setCreator(loggedInUser);
+
+        emailService.prepareAndSend(post,"New Post created", "Your New Post has been created");
 
         postDao.save(post);
 

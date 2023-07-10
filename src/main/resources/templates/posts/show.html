@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
-<head th:replace="partials/header :: head" />
+<head th:replace="partials/header :: head"/>
 <body>
-<div th:replace="partials/navbar :: navbar" />
+<div th:replace="partials/navbar :: navbar"/>
 
-<div class="container-fluid">
-<h1 th:text="${post}" class="text-center"></h1>
-<a href="/posts">Return to posts</a>
+<div class="container-fluid text-center my-3">
+    <h1 th:text="${post.title}" class="card-title"></h1>
+    <p th:text="${post.body}" class="card-text"></p>
+    <p class="card-text">Created by:</p>
+    <p th:text="${post.getCreator().getUsername()}" class="card-text"></p>
+    <a href="/posts">Return to all posts</a>
 </div>
 
-<div th:replace="partials/footer :: footer" />
+
+<div th:replace="partials/footer :: footer"/>
 </body>
 </html>

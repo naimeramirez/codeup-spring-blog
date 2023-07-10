@@ -5,9 +5,9 @@
 <body>
 <div th:replace="partials/navbar :: navbar"/>
 
-<h1 class="text-center my-3">All Posts</h1>
+<h1 class="text-center mt-3">Viewing All Posts</h1>
 <div class="container-fluid row">
-    <div th:each="post : ${posts}" class="col-sm-4 d-flex justify-content-evenly">
+    <div th:each="post : ${posts}" class="col-sm-4 d-flex justify-content-evenly my-3">
         <div class="card">
             <div class="card-body">
                 <h5 th:text="${post.title}" class="card-title text-center"></h5>
