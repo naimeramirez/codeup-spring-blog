@@ -60,21 +60,11 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    @GetMapping("/${id}/edit")
+    @GetMapping("/{id}/edit")
     public String editPost(@PathVariable Long id, Model model) {
-        Post post = postDao.findById(id).get();
-        model.addAttribute("post", post);
-        return "/posts/edit";
-    }
-
-    @PostMapping("/${id}/edit")
-    public String submitEditPost(@PathVariable Long id, @ModelAttribute Post post) {
-
-        emailService.prepareAndSend(post,"Edited Post", "Your post has been edited");
-        post.setId(id);
-        postDao.save(post);
-
-        return "redirect:/posts";
+        Post postEdit = postDao.getReferenceById(id);
+        model.addAttribute("post", postEdit);
+        return "/posts/create";
     }
 
 
