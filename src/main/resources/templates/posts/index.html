@@ -12,7 +12,7 @@
             <div class="card-body">
                 <h5 th:text="${post.title}" class="card-title text-center"></h5>
                 <p th:text="${post.body}" class="card-text"></p>
-                <a href="/posts/1">View Post</a>
+                <a th:href="|/posts/${post.id}|">View Post</a>
             </div>
         </div>
     </div>
